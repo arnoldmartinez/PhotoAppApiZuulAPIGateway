@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 //import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 //@EnableZuulProxy
-@EnableEurekaClient
+//@EnableEurekaClient
 @SpringBootApplication
 public class PhotoAppApiZuulApiApplication {
 
