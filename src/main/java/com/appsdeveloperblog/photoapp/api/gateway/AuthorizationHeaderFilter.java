@@ -1,6 +1,5 @@
 package com.appsdeveloperblog.photoapp.api.gateway;
 
-import com.netflix.discovery.converters.Auto;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -34,7 +33,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
             ServerHttpRequest request = exchange.getRequest();
 
             if (!request.getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                return onError(exchange, "No athorization header", HttpStatus.UNAUTHORIZED);
+                return onError(exchange, "No authorization header", HttpStatus.UNAUTHORIZED);
             }
 
             String authorizationHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
@@ -58,7 +57,8 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
     private boolean isJwtValid(String jwt) {
         boolean returnValue = true;
 
-        String subject = Jwts.parser().setSigningKey(env.getProperty("token.secret"))
+        String subject = Jwts.parser()
+                .setSigningKey(env.getProperty("token.secret"))
                 .parseClaimsJws(jwt)
                 .getBody()
                 .getSubject();
