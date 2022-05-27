@@ -21,7 +21,7 @@ public class GlobalFiltersConfiguration {
             logger.info("My second global pre-filter is executed...");
 
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-                logger.info("My second global post-filter was executed...");
+                logger.info("My third post-filter executed...");
             }));
         });
     }
@@ -34,7 +34,7 @@ public class GlobalFiltersConfiguration {
             logger.info("My third global pre-filter is executed...");
 
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-                logger.info("My third global post-filter was executed...");
+                logger.info("My second post-filter was executed...");
             }));
         });
     }
@@ -47,7 +47,7 @@ public class GlobalFiltersConfiguration {
             logger.info("My four global pre-filter is executed...");
 
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-                logger.info("My four global post-filter was executed...");
+                logger.info("My first post-filter is executed...");
             }));
         });
     }
